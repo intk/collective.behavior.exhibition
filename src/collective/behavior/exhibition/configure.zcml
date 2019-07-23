@@ -10,7 +10,6 @@
   <include package="five.grok"/>
   <include package="plone.behavior"/>
   <grok:grok package="." />
-  <i18n:registerTranslations directory="locales" />
 
   <genericsetup:registerProfile
     description="Installs the collective.behavior.exhibition package"
@@ -21,10 +20,14 @@
     />
 
   <plone:behavior
-    description="Adds exhibition fields."
-    factory=".behavior.Exhibition"
-    provides=".interfaces.IExhibition"
-    title="Exhibition"
+    description="Adds exhibition extra fields."
+    provides=".behavior.IExhibition"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    title="Exhibition extra fields behavior"
     />
+
+  <adapter name="exhibition_priref" factory=".behavior.exhibition_priref" />
+  <adapter name="is_exhibition" factory=".behavior.is_exhibition" />
+  <adapter name="object_period_index" factory=".behavior.object_period_index" />
 
 </configure>
